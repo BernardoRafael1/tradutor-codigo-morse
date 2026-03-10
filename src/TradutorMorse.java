@@ -43,6 +43,18 @@ public class TradutorMorse {
 
         System.out.println("Você digitou: " + entrada);
 
+        System.out.print("Tradução para Morse ");
+        String maiusculas = entrada.toUpperCase(); // padroniza pra letras maiúsculas (já que colocamos elas maiusculas lá em cima)
+
+        for (char caractere : maiusculas.toCharArray()) {
+            String letra = String.valueOf(caractere); // transforma a frase em uma sequência de caracteres
+
+            if (mapaMorse.containsKey(letra)) {
+                System.out.print(mapaMorse.get(letra) + " ");
+            } // verifica se o caractere existe no mapa
+        }
+        System.out.println();
+
         leitor.close();
     }
 }
