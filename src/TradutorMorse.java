@@ -37,23 +37,30 @@ public class TradutorMorse {
         mapaMorse.put(" ", "/");
 
         System.out.println("TRADUTOR DE CÓDIGO MORSE");
-        System.out.print("Digite o texto que queira traduzir: ");
+        System.out.print("(Digite 'Sair' para encerrar o programa)");
 
-        String entrada = leitor.nextLine();
+        while (true) {
+            System.out.print("\nDigite o texto: ");
+            String entrada = leitor.nextLine();
 
-        System.out.println("Você digitou: " + entrada);
+            if (entrada.equalsIgnoreCase("sair")) {
+                System.out.println("Programa Encerrado");
+                break;
+            }
 
-        System.out.print("Tradução para Morse ");
-        String maiusculas = entrada.toUpperCase(); // padroniza pra letras maiúsculas (já que colocamos elas maiusculas lá em cima)
+            String textoNormal = java.text.Normalizer.normalize(entrada, java.text.Normalizer.Form.NFD)
+                    .replaceAll("\\p{M}", "")
+                    .toUpperCase();
 
-        for (char caractere : maiusculas.toCharArray()) {
-            String letra = String.valueOf(caractere); // transforma a frase em uma sequência de caracteres
-
-            if (mapaMorse.containsKey(letra)) {
-                System.out.print(mapaMorse.get(letra) + " ");
-            } // verifica se o caractere existe no mapa
+            System.out.print("Resultado: ");
+            for (char c : textoNormal.toCharArray()) {
+                String letra = String.valueOf(c);
+                if (mapaMorse.containsKey(letra)) {
+                    System.out.print(mapaMorse.get(letra) + " ");
+                }
+            }
+            System.out.println();
         }
-        System.out.println();
 
         leitor.close();
     }
