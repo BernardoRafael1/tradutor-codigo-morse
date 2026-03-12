@@ -6,6 +6,7 @@ public class TradutorMorse {
 
         Scanner leitor = new Scanner(System.in);
 
+        // mapeando o alfabeto para morse
         HashMap<String, String> mapaMorse = new HashMap<>();
 
         mapaMorse.put("A", ".-");
@@ -39,16 +40,19 @@ public class TradutorMorse {
         System.out.println("TRADUTOR DE CÓDIGO MORSE");
         System.out.print("(Digite 'Sair' para encerrar o programa)");
 
+        // loop para manter a aplicação rodando
         while (true) {
             System.out.print("\nDigite o texto: ");
             String entrada = leitor.nextLine();
 
+            // condição para interromper o loop (que é digitar sair)
             if (entrada.equalsIgnoreCase("sair")) {
                 System.out.println("Programa Encerrado");
                 break;
             }
 
             System.out.print("Resultado: ");
+            // identificando se a entrada é código morse ou padrão (pra saber se vai codificar ou decodificar)
             if (entrada.startsWith(".") || entrada.startsWith("-")) {
                 String[] palavras = entrada.split(" ");
                 for (String sinal : palavras) {
@@ -60,10 +64,11 @@ public class TradutorMorse {
                     }
                 }
             } else {
+                // padronizando o texto para remover acentuação e convertendo para caixa alta
                 String textoNormal = java.text.Normalizer.normalize(entrada, java.text.Normalizer.Form.NFD)
                         .replaceAll("\\p{M}", "")
                         .toUpperCase();
-
+                // conversão de cada caractere do texto para seu valor correspondente no mapeamento que fizemos lá em cima do morse
                 for (char c : textoNormal.toCharArray()) {
                     String letra = String.valueOf(c);
                     if (mapaMorse.containsKey(letra)) {
