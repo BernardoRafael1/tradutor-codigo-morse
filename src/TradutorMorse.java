@@ -48,15 +48,27 @@ public class TradutorMorse {
                 break;
             }
 
-            String textoNormal = java.text.Normalizer.normalize(entrada, java.text.Normalizer.Form.NFD)
-                    .replaceAll("\\p{M}", "")
-                    .toUpperCase();
-
             System.out.print("Resultado: ");
-            for (char c : textoNormal.toCharArray()) {
-                String letra = String.valueOf(c);
-                if (mapaMorse.containsKey(letra)) {
-                    System.out.print(mapaMorse.get(letra) + " ");
+            if (entrada.startsWith(".") || entrada.startsWith("-")) {
+                String[] palavras = entrada.split(" ");
+                for (String sinal : palavras) {
+                    for (String chave : mapaMorse.keySet()) {
+                        if (mapaMorse.get(chave).equals(sinal)) {
+                            System.out.print(chave);
+                            break;
+                        }
+                    }
+                }
+            } else {
+                String textoNormal = java.text.Normalizer.normalize(entrada, java.text.Normalizer.Form.NFD)
+                        .replaceAll("\\p{M}", "")
+                        .toUpperCase();
+
+                for (char c : textoNormal.toCharArray()) {
+                    String letra = String.valueOf(c);
+                    if (mapaMorse.containsKey(letra)) {
+                        System.out.print(mapaMorse.get(letra) + " ");
+                    }
                 }
             }
             System.out.println();
