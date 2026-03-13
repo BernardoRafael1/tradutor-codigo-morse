@@ -1,3 +1,5 @@
-# tradutor-codigo-morse
-Estou fazendo esse CLI em Java que traduz texto pra código morse e também decodifica. Estou usando apenas para praticar lógica.
+# Tradutor de Código Morse (CLI)
 
+Este projeto é um sistema de tradução bidirecional (Texto <-> Morse) utilizando uma interface de linha de comando.
+
+> **Nota:** Este é um projeto de cunho estritamente acadêmico e de prática cotidiana para consolidação de sintaxe e lógica de backend.
